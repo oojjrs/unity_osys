@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class FinderInParentT<T> : MonoBehaviour where T : class
+public abstract class FinderInParentT<T> : MonoBehaviour
 {
     private FinderT<T> Component
     {
