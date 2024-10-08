@@ -26,9 +26,9 @@ public class EditorControl
             action?.Invoke();
     }
 
-    public void DrawAll<T>(IEnumerable<T> values, Func<T, object> getName, Action<T> drawBody)
+    public void DrawAll<T>(IEnumerable<T> values, Func<T, object> getName, Action<T> drawBody, string title = "Entries")
     {
-        FoldoutBox("Entries", () =>
+        FoldoutBox(title, () =>
         {
             foreach (var value in values)
             {
