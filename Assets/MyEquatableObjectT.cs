@@ -3,15 +3,11 @@
 public abstract class MyEquatableObjectT<T> : IEquatable<T> where T : MyEquatableObjectT<T>
 {
     public abstract bool Equals(T other);
+    public abstract override int GetHashCode();
 
     public override bool Equals(object obj)
     {
         return obj is T other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
     }
 
     public static bool operator ==(MyEquatableObjectT<T> lhs, MyEquatableObjectT<T> rhs)
