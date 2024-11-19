@@ -111,7 +111,7 @@ public class MyRandom
             return Enumerable.Empty<T>();
 
         var length = entries.Count();
-        if (length >= count)
+        if (length <= count)
             return Shuffle(entries, random);
 
         return entries.OrderBy(t => random.Next()).Take(count);
