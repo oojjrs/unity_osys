@@ -141,9 +141,10 @@ public class EditorControl
             ClientBridge.SetDebugEnum(name, newValue);
     }
 
-    public void TextField(string name)
+    public void TextField(string name, string defValue = "")
     {
-        TextCache.TryGetValue(name, out var text);
+        if (TextCache.TryGetValue(name, out var text) == false)
+            text = defValue;
 
         var ret = EditorGUILayout.TextField(name, text);
         if (ret != text)
