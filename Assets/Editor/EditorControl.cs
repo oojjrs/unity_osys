@@ -67,10 +67,12 @@ public class EditorControl
             VerticalBox(action);
     }
 
-    public string GetText(string name)
+    public string GetText(string name, string defValue = "")
     {
-        TextCache.TryGetValue(name, out var text);
-        return text;
+        if (TextCache.TryGetValue(name, out var text))
+            return text;
+        else
+            return defValue;
     }
 
     public Texture2D GetTexture(string name)
