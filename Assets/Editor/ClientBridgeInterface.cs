@@ -10,7 +10,7 @@ public interface ClientBridgeInterface
     T GetDebugEnum<T>(string name, T defValue) where T : Enum;
     bool GetDebugFlag(string name) => GetDebugFlag(name, default);
     bool GetDebugFlag(string name, bool defValue);
-    string GetString(string name);
+    string GetString(string name, string defValue = "");
     Vector3 GetVector3(string name);
     void Send(object packet);
     void SetDebugEnum<T>(string name, T value) where T : Enum;

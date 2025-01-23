@@ -69,10 +69,13 @@ public class EditorControl
 
     public string GetText(string name, string defValue = "")
     {
-        if (TextCache.TryGetValue(name, out var text))
-            return text;
-        else
-            return defValue;
+        if (TextCache.TryGetValue(name, out var text) == false)
+        {
+            text = ClientBridge.GetString(name, defValue);
+            TextCache[name] = text;
+        }
+
+        return text;
     }
 
     public Texture2D GetTexture(string name)
