@@ -147,12 +147,16 @@ public class EditorControl
 
         var ret = EditorGUILayout.TextField(name, text);
         if (ret != text)
+        {
             TextCache[name] = ret;
+            ClientBridge.SetString(name, ret);
+        }
     }
 
     public void TextFieldClear(string name)
     {
         TextCache.Remove(name);
+        ClientBridge.SetString(name, string.Empty);
     }
 
     public void TextureField(string name)
