@@ -1,6 +1,8 @@
 ﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -35,6 +37,86 @@ public class EditorControl
                 FoldoutBox(getName?.Invoke(value)?.ToString() ?? value.ToString(), () =>
                 {
                     drawBody?.Invoke(value);
+                });
+            }
+        });
+    }
+
+    public void DrawAllProperties<T>(IEnumerable<T> values, Func<T, object> getName, Func<T, object> getRecord)
+    {
+        void Dump(PropertyInfo[] props, object value)
+        {
+            foreach (var prop in props)
+            {
+                if (prop.PropertyType.IsArray)
+                {
+                    var array = prop.GetValue(value) as Array;
+                    if (array.Length > 0)
+                    {
+                        FoldoutBox(typeof(T) + prop.Name, prop.Name, () =>
+                        {
+                            var propTypeName = prop.PropertyType.GetElementType().Name;
+                            foreach (var t in array)
+                                DumpLine(prop.PropertyType, $"{prop.Name}[{Array.IndexOf(array, t)}]", propTypeName, t);
+                        });
+                    }
+                    else
+                    {
+                        LabelField(prop.Name, "[]");
+                    }
+                }
+                else
+                {
+                    DumpLine(prop.PropertyType, prop.Name, prop.PropertyType.Name, prop.GetValue(value));
+                }
+            }
+        }
+
+        void DumpLine(Type propertyType, string propName, string propTypeName, object propValue)
+        {
+            switch (propTypeName)
+            {
+                case nameof(String):
+                    LabelField(propName, propValue.ToString());
+                    break;
+                case nameof(Vector3):
+                    LabelField(propName, propValue.ToString());
+                    break;
+                default:
+                    if (propertyType.IsPrimitive)
+                    {
+                        LabelField(propName, propValue.ToString());
+                    }
+                    else if (propertyType.IsEnum)
+                    {
+                        LabelField(propName, propValue.ToString());
+                    }
+                    else
+                    {
+                        FoldoutBox(typeof(T) + propName, propName, () =>
+                        {
+                            if (propertyType.IsArray)
+                                propertyType = propertyType.GetElementType();
+
+                            var props = propertyType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
+
+                            // 재귀 접근은 원천 차단한다. (값 출력은 추후 고민)
+                            Dump(props.Where(prop => prop.PropertyType != propertyType).ToArray(), propValue);
+                        });
+                    }
+                    break;
+            }
+        }
+
+        FoldoutBox("Entries", () =>
+        {
+            foreach (var value in values)
+            {
+                FoldoutBox(getName?.Invoke(value)?.ToString() ?? value.ToString(), () =>
+                {
+                    var record = getRecord?.Invoke(value);
+                    var props = record.GetType().GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
+                    Dump(props, record);
                 });
             }
         });
