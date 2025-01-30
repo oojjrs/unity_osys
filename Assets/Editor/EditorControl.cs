@@ -149,6 +149,16 @@ public class EditorControl
             VerticalBox(action);
     }
 
+    public T GetDebugEnum<T>(string name, T defValue = default) where T : Enum
+    {
+        return ClientBridge.GetDebugEnum(name, defValue);
+    }
+
+    public bool GetDebugFlag(string name, bool defValue = false)
+    {
+        return ClientBridge.GetDebugFlag(name, defValue);
+    }
+
     public string GetText(string name, string defValue = "")
     {
         if (TextCache.TryGetValue(name, out var text) == false)
@@ -168,7 +178,7 @@ public class EditorControl
 
     public Vector3 GetVector3(string name)
     {
-        return ClientBridge.GetVector3(GetType().Name + "." + name);
+        return ClientBridge.GetVector3(name);
     }
 
     // 함수명이 왜 이러냐고 묻지 마라
@@ -307,7 +317,7 @@ public class EditorControl
         var value = GetVector3(name);
         var newValue = EditorGUILayout.Vector3Field(label, value);
         if (newValue != value)
-            ClientBridge.SetVector3(GetType().Name + "." + name, newValue);
+            ClientBridge.SetVector3(name, newValue);
     }
 
     public void Vertical(Action action)
