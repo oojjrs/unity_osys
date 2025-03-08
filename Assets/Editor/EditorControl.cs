@@ -223,6 +223,18 @@ public class EditorControl
         GUIenabled = GUI.enabled;
     }
 
+    public void ReadonlyTextField(string name, string value)
+    {
+        Horizontal(() =>
+        {
+            LabelField(name, value);
+            Button("Copy", () =>
+            {
+                Debug.Log($"COPY THE FIELD VALUE TO CLIPBOARD: {value}");
+            });
+        });
+    }
+
     public void ScrollView(Action action)
     {
         ScrollPosition = EditorGUILayout.BeginScrollView(ScrollPosition);
