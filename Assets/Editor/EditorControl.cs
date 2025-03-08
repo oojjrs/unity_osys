@@ -230,6 +230,7 @@ public class EditorControl
             LabelField(name, value);
             Button("Copy", () =>
             {
+                GUIUtility.systemCopyBuffer = value;
                 Debug.Log($"COPY THE FIELD VALUE TO CLIPBOARD: {value}");
             });
         });
