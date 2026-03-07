@@ -13,4 +13,15 @@ public static class DictionaryExtensions
 
         return true;
     }
+
+    public static bool InsertAll<TKey, TValue, TElement>(this Dictionary<TKey, TElement> dic, IEnumerable<TValue> values, Func<TValue, TKey> getKey, Func<TValue, TElement> getElement)
+    {
+        foreach (var value in values)
+        {
+            if (dic.TryAdd(getKey(value), getElement(value)) == false)
+                return false;
+        }
+
+        return true;
+    }
 }
