@@ -4,6 +4,7 @@ using System.Linq;
 
 using PoolObject = System.Object;
 
+[Obsolete("Use UnityEngine.Pool.ObjectPool instead.")]
 public class ObjectPool
 {
     private class Entry
