@@ -1,12 +1,12 @@
 {
   "name": "com.oojjrs.osys",
   "displayName": "OOJJRS' System",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "unity": "6000.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oojjrs/unity_osys.git?path=/Assets"
+    "url": "git+https://github.com/oojjrs/unity_osys.git?path=/Packages/src"
   },
   "author": {
     "name": "oojjrs",

@@ -1,4 +1,4 @@
-﻿public static class TinyMath
+public static class TinyMath
 {
     public static int Clamp(int value, int min, int max)
     {

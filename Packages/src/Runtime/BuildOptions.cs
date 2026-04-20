@@ -1,4 +1,4 @@
-﻿public static class BuildOptions
+public static class BuildOptions
 {
     public static bool IsStandaloneTest()
     {

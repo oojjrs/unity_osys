@@ -1,4 +1,4 @@
-﻿// 매번 검색하기 귀찮아서 만들어둔 거야.
+// 매번 검색하기 귀찮아서 만들어둔 거야.
 public static class StringFormatHelper
 {
     /// <summary>

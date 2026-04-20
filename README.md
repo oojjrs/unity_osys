@@ -1,12 +1,17 @@
 # UnityOsys
 
-Unity에서 자주 쓰는 공용 유틸리티 모음입니다.
+Unity에서 자주 쓰는 공용 유틸리티를 로컬 패키지 형태로 관리하는 저장소입니다.
 
 ## 환경
 
 - Unity `6000.3.3f1`
 - Assembly: `oojjrs.osys`
 - Package: `com.oojjrs.osys`
+
+## 패키지 위치
+
+- 실제 패키지 루트: `Packages/src`
+- 런타임 코드: `Packages/src/Runtime`
 
 ## 포함 기능
 
@@ -24,90 +29,31 @@ Unity에서 자주 쓰는 공용 유틸리티 모음입니다.
 - `TinyMath`: `Clamp`, `Clamp01`
 - `XmlHelper`: XML 문자열 -> 배열 객체 역직렬화
 
-## 빠른 사용 예시
+## 사용 경로
 
-### MyHashQueue
-
-```csharp
-var queue = new MyHashQueue<int>();
-queue.Enqueue(1);   // true
-queue.Enqueue(1);   // false
-
-if (queue.TryDequeue(out var value))
-{
-    // use value
-}
-```
-
-### StringExtensions
-
-```csharp
-public enum GameState
-{
-    Idle,
-    Play,
-}
-
-var state = "Play".ToEnum(GameState.Idle);
-```
-
-### RegexHelper
-
-```csharp
-var matched = "Player_001".RegexIsLike("Player%");
-var matchedIgnoreCase = "player_001".RegexIsLike("PLAYER%", RegexOptions.IgnoreCase);
-```
-
-### NotifierBufferT
-
-```csharp
-var buffer = new NotifierBufferT<int>();
-buffer.OnUpserted += values =>
-{
-    foreach (var value in values)
-    {
-        // handle value
-    }
-};
-
-buffer.Add(1);
-buffer.Add(2);
-buffer.Broadcast(3);
-```
-
-### XmlHelper
-
-```csharp
-XmlHelper.Build<MyData>(xmlText, values =>
-{
-    foreach (var value in values)
-    {
-        // handle value
-    }
-});
+```text
+Packages/src/
+  package.json
+  README.md
+  Runtime/
+    oojjrs.osys.asmdef
+    BuildOptions.cs
+    DictionaryExtensions.cs
+    MyDictionaryListT.cs
+    MyEquatableObjectT.cs
+    MyHashQueue.cs
+    MyRandom.cs
+    NotifierBufferInterface.cs
+    NotifierBufferT.cs
+    ObjectPool.cs
+    RegexHelper.cs
+    StringExtensions.cs
+    StringFormatHelper.cs
+    TinyMath.cs
+    XmlHelper.cs
 ```
 
 ## 참고
 
+- 현재 프로젝트에서는 `Packages/manifest.json`에서 `com.oojjrs.osys`를 `file:src`로 참조합니다.
 - `ObjectPool`은 `[Obsolete("Use UnityEngine.Pool.ObjectPool instead.")]` 상태입니다.
-- 새 코드에서는 `UnityEngine.Pool.ObjectPool` 사용을 권장합니다.
-
-## 파일 구성
-
-```text
-Assets/
-  BuildOptions.cs
-  DictionaryExtensions.cs
-  MyDictionaryListT.cs
-  MyEquatableObjectT.cs
-  MyHashQueue.cs
-  MyRandom.cs
-  NotifierBufferInterface.cs
-  NotifierBufferT.cs
-  ObjectPool.cs
-  RegexHelper.cs
-  StringExtensions.cs
-  StringFormatHelper.cs
-  TinyMath.cs
-  XmlHelper.cs
-```
