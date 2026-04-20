@@ -1,4 +1,4 @@
-﻿# UnityOsys
+# UnityOsys
 
 Unity에서 자주 쓰는 공용 유틸리티 모음입니다.
 
@@ -18,6 +18,7 @@ Unity에서 자주 쓰는 공용 유틸리티 모음입니다.
 - `MyRandom`: 랜덤 범위, 셔플, 선택, 가중치 선택
 - `NotifierBufferT<T>`: 변경 버퍼링 후 일괄 이벤트 전달
 - `ObjectPool`: 기존 커스텀 오브젝트 풀
+- `RegexHelper`: `%` 와일드카드 기반 문자열 매칭
 - `StringExtensions`: 문자열 -> enum 변환
 - `StringFormatHelper`: 숫자/화폐/퍼센트 포맷
 - `TinyMath`: `Clamp`, `Clamp01`
@@ -48,6 +49,13 @@ public enum GameState
 }
 
 var state = "Play".ToEnum(GameState.Idle);
+```
+
+### RegexHelper
+
+```csharp
+var matched = "Player_001".RegexIsLike("Player%");
+var matchedIgnoreCase = "player_001".RegexIsLike("PLAYER%", RegexOptions.IgnoreCase);
 ```
 
 ### NotifierBufferT
@@ -97,6 +105,7 @@ Assets/
   NotifierBufferInterface.cs
   NotifierBufferT.cs
   ObjectPool.cs
+  RegexHelper.cs
   StringExtensions.cs
   StringFormatHelper.cs
   TinyMath.cs
