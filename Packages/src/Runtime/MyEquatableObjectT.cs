@@ -15,7 +15,7 @@ public abstract class MyEquatableObjectT<T> : IEquatable<T> where T : MyEquatabl
         if (ReferenceEquals(lhs, rhs))
             return true;
 
-        if (((object)lhs == default) || ((object)rhs == default))
+        if ((lhs is null) || (rhs is null))
             return false;
 
         return lhs.Equals(rhs);

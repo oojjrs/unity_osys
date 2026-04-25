@@ -54,7 +54,7 @@ public class ObjectPool
 
     public void Clear()
     {
-        if (Deallocator != default)
+        if (Deallocator is not null)
         {
             foreach (var obj in Objects)
                 Deallocator(obj.UnityObject);
@@ -79,7 +79,7 @@ public class ObjectPool
         }
 
         var entry = Objects.FirstOrDefault(t => t.Allocated == false);
-        if (entry == default)
+        if (entry is null)
             throw new InvalidProgramException();
 
         entry.Allocated = true;
@@ -124,13 +124,13 @@ public class ObjectPool
 
     public void ReleaseObjects(params PoolObject[] values)
     {
-        if (values == null)
+        if (values is null)
             throw new ArgumentNullException();
 
         foreach (var value in values)
         {
             var entry = Objects.FirstOrDefault(t => t.UnityObject == value);
-            if (entry != null)
+            if (entry is not null)
             {
                 entry.Allocated = false;
                 --AllocatedCount;

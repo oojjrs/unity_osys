@@ -72,7 +72,7 @@ public class MyRandom
 
     public static T Select<T>(IEnumerable<T> entries, Random random)
     {
-        if (entries == default)
+        if (entries is null)
             return default;
 
         if (entries.Any() == false)
@@ -101,7 +101,7 @@ public class MyRandom
 
     public static IEnumerable<T> Select<T>(IEnumerable<T> entries, int count, Random random)
     {
-        if (entries == default)
+        if (entries is null)
             return Enumerable.Empty<T>();
 
         if (count <= 0)
@@ -132,7 +132,7 @@ public class MyRandom
 
     public static T Select<T>(IEnumerable<(T, float)> entries, Random random)
     {
-        if (entries == default)
+        if (entries is null)
             return default;
 
         if (entries.Any() == false)
@@ -169,7 +169,7 @@ public class MyRandom
 
     public static IEnumerable<T> SelectWithRepetition<T>(IEnumerable<T> entries, int count, Random random)
     {
-        if (entries == default)
+        if (entries is null)
             return Enumerable.Empty<T>();
 
         if (count <= 0)
@@ -205,7 +205,7 @@ public class MyRandom
 
     public static IEnumerable<T> SelectWithRepetition<T>(IEnumerable<(T, float)> entries, int count, Random random)
     {
-        if (entries == default)
+        if (entries is null)
             return Enumerable.Empty<T>();
 
         if (count <= 0)
@@ -245,7 +245,7 @@ public class MyRandom
 
     public static IEnumerable<T> Shuffle<T>(IEnumerable<T> entries, Random random)
     {
-        if (entries == default)
+        if (entries is null)
             return Enumerable.Empty<T>();
 
         if (entries.Any() == false)
