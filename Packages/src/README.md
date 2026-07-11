@@ -5,7 +5,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 모아둔 로컬 패키지입�
 ## 패키지 정보
 
 - Name: `com.oojjrs.osys`
-- Version: `1.9.0`
+- Version: `1.10.0`
 - Unity: `6000.0`
 
 ## 구조
@@ -17,6 +17,7 @@ Packages/src/
   Runtime/
     oojjrs.osys.asmdef
     BuildOptions.cs
+    DateTimeExtensions.cs
     DictionaryExtensions.cs
     MyDictionaryListT.cs
     MyEquatableObjectT.cs
@@ -28,6 +29,7 @@ Packages/src/
     RegexHelper.cs
     StringExtensions.cs
     StringFormatHelper.cs
+    TimeSpanExtensions.cs
     TinyMath.cs
     XmlHelper.cs
 ```
@@ -39,6 +41,12 @@ using System.Text.RegularExpressions;
 
 var matched = "Player_001".RegexIsLike("Player%");
 var matchedIgnoreCase = "player_001".RegexIsLike("PLAYER%", RegexOptions.IgnoreCase);
+```
+
+```csharp
+var dateTimeText = DateTime.Now.ToOsysDateTimeString();
+var elapsedText = TimeSpan.FromSeconds(5.123).ToOsysElapsedWithMillisecondsString();
+var durationText = TimeSpan.FromHours(27.25).ToOsysDurationString();
 ```
 
 ## 참고

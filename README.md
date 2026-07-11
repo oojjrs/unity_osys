@@ -4,7 +4,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 로컬 패키지 형태로 관�
 
 ## 환경
 
-- Unity `6000.3.3f1`
+- Unity `6000.4.5f1`
 - Assembly: `oojjrs.osys`
 - Package: `com.oojjrs.osys`
 
@@ -16,6 +16,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 로컬 패키지 형태로 관�
 ## 포함 기능
 
 - `BuildOptions`: 빌드 매크로 분기 (`USE_STANDALONE`, `USE_STEAM`, `USE_STOVE`)
+- `DateTimeExtensions`: 날짜와 시각을 `ToOsys...String()` 형식으로 변환
 - `DictionaryExtensions`: `Dictionary` 일괄 추가
 - `MyDictionaryListT<TKey, TValue>`: 키 하나에 여러 값 저장
 - `MyEquatableObjectT<T>`: 값 비교 기반 클래스
@@ -26,6 +27,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 로컬 패키지 형태로 관�
 - `RegexHelper`: `%` 와일드카드 기반 문자열 매칭
 - `StringExtensions`: 문자열 -> enum 변환
 - `StringFormatHelper`: 숫자/화폐/퍼센트 포맷
+- `TimeSpanExtensions`: 고정 및 동적 경과 시간 포맷
 - `TinyMath`: `Clamp`, `Clamp01`
 - `XmlHelper`: XML 문자열 -> 배열 객체 역직렬화
 
@@ -38,6 +40,7 @@ Packages/src/
   Runtime/
     oojjrs.osys.asmdef
     BuildOptions.cs
+    DateTimeExtensions.cs
     DictionaryExtensions.cs
     MyDictionaryListT.cs
     MyEquatableObjectT.cs
@@ -49,6 +52,7 @@ Packages/src/
     RegexHelper.cs
     StringExtensions.cs
     StringFormatHelper.cs
+    TimeSpanExtensions.cs
     TinyMath.cs
     XmlHelper.cs
 ```
