@@ -5,7 +5,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 모아둔 로컬 패키지입�
 ## 패키지 정보
 
 - Name: `com.oojjrs.osys`
-- Version: `1.11.0`
+- Version: `1.11.1`
 - Unity: `6000.0`
 
 ## 구조
@@ -45,6 +45,12 @@ recentValues.Enqueue(3);
 recentValues.Enqueue(4);
 
 recentValues.TryPeek(out var oldestValue); // 2
+var snapshot = recentValues.ToArray(); // 2, 3, 4
+
+foreach (var value in recentValues)
+{
+    // 2, 3, 4
+}
 ```
 
 ```csharp

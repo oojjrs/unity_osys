@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
-public class MyBoundedQueue<T>
+public class MyBoundedQueue<T> : IReadOnlyCollection<T>
 {
     private readonly Queue<T> _queue;
 
@@ -36,6 +37,11 @@ public class MyBoundedQueue<T>
         _queue.Enqueue(item);
     }
 
+    public T[] ToArray()
+    {
+        return _queue.ToArray();
+    }
+
     public bool TryDequeue(out T item)
     {
         if (_queue.Count <= 0)
@@ -58,5 +64,15 @@ public class MyBoundedQueue<T>
 
         item = _queue.Peek();
         return true;
+    }
+
+    IEnumerator<T> IEnumerable<T>.GetEnumerator()
+    {
+        return _queue.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _queue.GetEnumerator();
     }
 }
