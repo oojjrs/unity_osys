@@ -5,7 +5,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 모아둔 로컬 패키지입�
 ## 패키지 정보
 
 - Name: `com.oojjrs.osys`
-- Version: `1.10.0`
+- Version: `1.11.0`
 - Unity: `6000.0`
 
 ## 구조
@@ -19,6 +19,7 @@ Packages/src/
     BuildOptions.cs
     DateTimeExtensions.cs
     DictionaryExtensions.cs
+    MyBoundedQueue.cs
     MyDictionaryListT.cs
     MyEquatableObjectT.cs
     MyHashQueue.cs
@@ -35,6 +36,16 @@ Packages/src/
 ```
 
 ## 예시
+
+```csharp
+var recentValues = new MyBoundedQueue<int>(3);
+recentValues.Enqueue(1);
+recentValues.Enqueue(2);
+recentValues.Enqueue(3);
+recentValues.Enqueue(4);
+
+recentValues.TryPeek(out var oldestValue); // 2
+```
 
 ```csharp
 using System.Text.RegularExpressions;
