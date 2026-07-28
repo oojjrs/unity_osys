@@ -5,7 +5,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 모아둔 로컬 패키지입�
 ## 패키지 정보
 
 - Name: `com.oojjrs.osys`
-- Version: `1.11.1`
+- Version: `1.12.0`
 - Unity: `6000.0`
 
 ## 구조
@@ -19,6 +19,8 @@ Packages/src/
     BuildOptions.cs
     DateTimeExtensions.cs
     DictionaryExtensions.cs
+    EnumerableExtensions.cs
+    EnumExtensions.cs
     MyBoundedQueue.cs
     MyDictionaryListT.cs
     MyEquatableObjectT.cs
@@ -33,6 +35,11 @@ Packages/src/
     TimeSpanExtensions.cs
     TinyMath.cs
     XmlHelper.cs
+  Tests/
+    Runtime/
+      oojjrs.osys.Tests.asmdef
+      EnumerableExtensionsTests.cs
+      EnumExtensionsTests.cs
 ```
 
 ## 예시
@@ -64,6 +71,22 @@ var matchedIgnoreCase = "player_001".RegexIsLike("PLAYER%", RegexOptions.IgnoreC
 var dateTimeText = DateTime.Now.ToOsysDateTimeString();
 var elapsedText = TimeSpan.FromSeconds(5.123).ToOsysElapsedWithMillisecondsString();
 var durationText = TimeSpan.FromHours(27.25).ToOsysDurationString();
+```
+
+```csharp
+enum PageEnum
+{
+    Home,
+    Inventory,
+    Settings,
+}
+
+var pages = new[] { "Home", "Inventory", "Settings" };
+var nextPage = pages.GetNext("Settings"); // Home
+var previousPage = pages.GetPrevious("Home"); // Settings
+
+var nextPageType = PageEnum.Home.GetNext(); // Inventory
+var previousPageType = PageEnum.Home.GetPrevious(); // Settings
 ```
 
 ## 참고
