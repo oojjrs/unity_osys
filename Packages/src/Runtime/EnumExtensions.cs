@@ -2,6 +2,11 @@ using System;
 
 public static class EnumExtensions
 {
+    public static int GetIndex<T>(this T value) where T : struct, Enum
+    {
+        return ((T[])Enum.GetValues(typeof(T))).GetIndex(value);
+    }
+
     public static T GetNext<T>(this T value) where T : struct, Enum
     {
         var values = (T[])Enum.GetValues(typeof(T));

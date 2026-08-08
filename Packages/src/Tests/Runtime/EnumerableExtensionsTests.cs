@@ -5,6 +5,32 @@ using NUnit.Framework;
 public class EnumerableExtensionsTests
 {
     [Test]
+    public void GetIndexReturnsFirstMatchIndex()
+    {
+        Assert.That(new[] { 1, 2, 1 }.GetIndex(1), Is.EqualTo(0));
+    }
+
+    [Test]
+    public void GetIndexReturnsIndex()
+    {
+        Assert.That(new[] { 1, 2, 3 }.GetIndex(1), Is.EqualTo(0));
+        Assert.That(new[] { 1, 2, 3 }.GetIndex(2), Is.EqualTo(1));
+        Assert.That(new[] { 1, 2, 3 }.GetIndex(3), Is.EqualTo(2));
+    }
+
+    [Test]
+    public void GetIndexReturnsValueCountForMissingMatch()
+    {
+        Assert.That(new[] { 1, 2, 3 }.GetIndex(4), Is.EqualTo(3));
+    }
+
+    [Test]
+    public void GetIndexReturnsZeroForEmptyValues()
+    {
+        Assert.That(Array.Empty<int>().GetIndex(0), Is.EqualTo(0));
+    }
+
+    [Test]
     public void GetNextReturnsDefaultForEmptyValues()
     {
         Assert.That(Array.Empty<int>().GetNext(0), Is.EqualTo(default(int)));
@@ -66,6 +92,7 @@ public class EnumerableExtensionsTests
     {
         IEnumerable<int> values = null;
 
+        Assert.Throws<ArgumentNullException>(() => values.GetIndex(1));
         Assert.Throws<ArgumentNullException>(() => values.GetNext(1));
         Assert.Throws<ArgumentNullException>(() => values.GetPrevious(1));
     }

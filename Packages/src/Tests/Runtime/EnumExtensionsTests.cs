@@ -36,6 +36,26 @@ public class EnumExtensionsTests
     }
 
     [Test]
+    public void GetIndexReturnsIndex()
+    {
+        Assert.That(SequenceEnum.First.GetIndex(), Is.EqualTo(0));
+        Assert.That(SequenceEnum.Second.GetIndex(), Is.EqualTo(1));
+        Assert.That(SequenceEnum.Third.GetIndex(), Is.EqualTo(2));
+    }
+
+    [Test]
+    public void GetIndexReturnsValueCountForUndefinedValue()
+    {
+        Assert.That(((SequenceEnum)99).GetIndex(), Is.EqualTo(3));
+    }
+
+    [Test]
+    public void GetIndexReturnsZeroForEmptyEnum()
+    {
+        Assert.That(default(EmptyEnum).GetIndex(), Is.EqualTo(0));
+    }
+
+    [Test]
     public void GetNextIncludesNamedFlagsCombination()
     {
         Assert.That(FlagEnum.Second.GetNext(), Is.EqualTo(FlagEnum.All));

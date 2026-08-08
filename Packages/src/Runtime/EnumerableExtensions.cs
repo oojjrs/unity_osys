@@ -3,6 +3,23 @@ using System.Collections.Generic;
 
 public static class EnumerableExtensions
 {
+    public static int GetIndex<T>(this IEnumerable<T> values, T value)
+    {
+        if (values == null)
+            throw new ArgumentNullException(nameof(values));
+
+        var index = 0;
+        foreach (var current in values)
+        {
+            if (EqualityComparer<T>.Default.Equals(current, value))
+                return index;
+
+            ++index;
+        }
+
+        return index;
+    }
+
     public static T GetNext<T>(this IEnumerable<T> values, T value)
     {
         if (values == null)

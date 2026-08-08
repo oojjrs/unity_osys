@@ -5,7 +5,7 @@ Unity에서 자주 쓰는 공용 유틸리티를 모아둔 로컬 패키지입�
 ## 패키지 정보
 
 - Name: `com.oojjrs.osys`
-- Version: `1.12.0`
+- Version: `1.13.0`
 - Unity: `6000.0`
 
 ## 구조
@@ -82,9 +82,11 @@ enum PageEnum
 }
 
 var pages = new[] { "Home", "Inventory", "Settings" };
+var pageIndex = pages.GetIndex("Inventory"); // 1
 var nextPage = pages.GetNext("Settings"); // Home
 var previousPage = pages.GetPrevious("Home"); // Settings
 
+var pageTypeIndex = PageEnum.Inventory.GetIndex(); // 1
 var nextPageType = PageEnum.Home.GetNext(); // Inventory
 var previousPageType = PageEnum.Home.GetPrevious(); // Settings
 ```
